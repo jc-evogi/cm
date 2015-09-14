@@ -1,0 +1,26 @@
+# config.yml
+version: 0.1
+log:
+    fields:
+	service: registry
+http:
+    addr: :5000
+storage:
+    cache:
+	layerinfo: inmemory
+    s3:
+       	accesskey: <your awsaccesskey>
+        secretkey: <your awssecretkey>
+        region: us-west-1
+        bucket: docker-registry-evogi-west
+        encrypt: true
+        secure: true
+        v4auth: true
+        chunksize: 5242880
+        rootdirectory: /s3
+
+# Dockerfile
+FROM registry:2
+COPY config.yml /etc/docker/registry/config.yml
+
+
